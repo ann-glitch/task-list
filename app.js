@@ -9,6 +9,9 @@ const deleteTasks = document.querySelector(".clear-tasks");
 loadEventListeners();
 
 function loadEventListeners() {
+  //DOM load content
+  document.addEventListener("DOMContentLoaded", getTasks);
+
   form.addEventListener("submit", addTask);
 
   taskList.addEventListener("click", removeTasks);
@@ -18,10 +21,34 @@ function loadEventListeners() {
   filter.addEventListener("keyup", filterTasks);
 }
 
+//get tasks from local storage
+function getTasks() {
+  let tasks;
+  if (localStorage.getItem("tasks") === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+  tasks.forEach((task) => {
+    const li = document.createElement("li");
+    li.className = "collection-item";
+    li.appendChild(document.createTextNode(task));
+
+    const link = document.createElement("a");
+    link.className = "delete-item secondary-content";
+    link.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+    li.appendChild(link);
+
+    taskList.appendChild(li);
+  });
+}
+
 //add task
 function addTask(e) {
   if (taskInput.value === "") {
     alert("Please add a task");
+
+    li.innerHTML = "";
   }
 
   const li = document.createElement("li");
@@ -32,16 +59,31 @@ function addTask(e) {
   link.className = "delete-item secondary-content";
   link.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
   li.appendChild(link);
-  console.log(li);
 
   taskList.appendChild(li);
 
+  //store tasks
+  storedTaskInLocalStorage(taskInput.value);
+
+  //clear inputs
   taskInput.value = "";
 
   e.preventDefault();
 }
 
-//remove tasks
+//store tasks in local storage
+function storedTaskInLocalStorage(task) {
+  let tasks;
+  if (localStorage.getItem("tasks") === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+  tasks.push(task);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+//remove tasks from list items
 function removeTasks(e) {
   if (e.target.parentElement.classList.contains("delete-item")) {
     if (confirm("Are you sure you want to delete it?")) {
@@ -50,7 +92,7 @@ function removeTasks(e) {
   }
 }
 
-//clear tasks
+//clear all tasks
 function clearTasks(e) {
   //   taskList.innerHTML = "";
 
