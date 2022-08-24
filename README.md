@@ -6,3 +6,7 @@
 
 - how to set, get and delete items from local storage.
 - how to filter an array.
+
+## live preview
+
+https://ann-glitch.github.io/taskList/
