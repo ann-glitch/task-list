@@ -83,6 +83,8 @@ function showError(error) {
 
   //clear error after 3 seconds
   setTimeout(clearError, 2000);
+
+  li.style.display = "none";
 }
 
 //clear error
