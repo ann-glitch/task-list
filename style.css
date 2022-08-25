@@ -1,0 +1,13 @@
+.btn:hover {
+ background-color: rgb(8, 122, 111);
+ color: white;
+}
+
+.clear-tasks:focus {
+    color: white;
+}
+
+.clear-tasks:hover {
+    color: white;
+}
+
