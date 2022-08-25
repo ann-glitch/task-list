@@ -45,10 +45,9 @@ function getTasks() {
 
 //add task
 function addTask(e) {
+  //show error if input is empty
   if (taskInput.value === "") {
-    alert("Please add a task");
-
-    li.innerHTML = "";
+    showError("Please add a task");
   }
 
   const li = document.createElement("li");
@@ -69,6 +68,26 @@ function addTask(e) {
   taskInput.value = "";
 
   e.preventDefault();
+}
+
+//show error
+function showError(error) {
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "alert alert-danger";
+  errorDiv.appendChild(document.createTextNode(error));
+
+  const container = document.querySelector(".container");
+  const divRow = document.querySelector("row");
+
+  container.insertBefore(errorDiv, divRow);
+
+  //clear error after 3 seconds
+  setTimeout(clearError, 2000);
+}
+
+//clear error
+function clearError() {
+  document.querySelector(".alert").remove();
 }
 
 //store tasks in local storage
