@@ -3,6 +3,11 @@
  color: white;
 }
 
+.btn:focus {
+    background-color: rgb(5, 173, 156);
+    color: white;
+   }
+
 .clear-tasks:focus {
     color: white;
 }

@@ -72,6 +72,7 @@ function addTask(e) {
 
 //show error
 function showError(error) {
+  const list = document.querySelector(".collection-item");
   const errorDiv = document.createElement("div");
   errorDiv.className = "alert alert-danger";
   errorDiv.appendChild(document.createTextNode(error));
@@ -84,7 +85,7 @@ function showError(error) {
   //clear error after 3 seconds
   setTimeout(clearError, 2000);
 
-  li.style.display = "none";
+  list.style.display = "none";
 }
 
 //clear error
