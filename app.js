@@ -47,7 +47,10 @@ function getTasks() {
 function addTask(e) {
   //show error if input is empty
   if (taskInput.value === "") {
-    showError("Please add a task");
+    showAlert("Please add a task", "error");
+    li.innerHTML = "";
+  } else {
+    showAlert("Task Added!", "success");
   }
 
   const li = document.createElement("li");
@@ -71,21 +74,20 @@ function addTask(e) {
 }
 
 //show error
-function showError(error) {
-  const list = document.querySelector(".collection-item");
+function showAlert(message, className) {
   const errorDiv = document.createElement("div");
-  errorDiv.className = "alert alert-danger";
-  errorDiv.appendChild(document.createTextNode(error));
+  errorDiv.className = `alert ${className}`;
+  errorDiv.appendChild(document.createTextNode(message));
 
   const container = document.querySelector(".container");
   const divRow = document.querySelector("row");
 
   container.insertBefore(errorDiv, divRow);
 
-  //clear error after 3 seconds
-  setTimeout(clearError, 2000);
-
-  list.style.display = "none";
+  //clear error after 2 seconds
+  setTimeout(function () {
+    document.querySelector(".alert").remove();
+  }, 2000);
 }
 
 //clear error
@@ -111,6 +113,7 @@ function removeTasks(e) {
     if (confirm("Are you sure you want to delete it?")) {
       e.target.parentElement.parentElement.remove();
       removeTaskFromLocalStorage(e.target.parentElement.parentElement);
+      showAlert("Task Removed!", "success");
     }
   }
 }
@@ -132,12 +135,13 @@ function removeTaskFromLocalStorage(taskItem) {
 }
 
 //clear all tasks
-function clearTasks(e) {
+function clearTasks() {
   //   taskList.innerHTML = "";
 
   //most used.
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
+    // showAlert("Tasks Cleared!", "success");
   }
 
   //clear tasks from local storage
