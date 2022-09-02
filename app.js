@@ -48,7 +48,6 @@ function addTask(e) {
   //show error if input is empty
   if (taskInput.value === "") {
     showAlert("Please add a task", "error");
-    li.innerHTML = "";
   } else {
     showAlert("Task Added!", "success");
   }

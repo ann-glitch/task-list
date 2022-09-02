@@ -4,9 +4,9 @@
 
 ## learnt
 
-- how to set, get and delete items from local storage.
-- how to filter an array.
+* [x] how to set, get and delete items from local storage.
+* [x] how to filter an array.
 
-## live preview
+---
 
-https://ann-glitch.github.io/taskList/
+[Live Demo](https://ann-glitch.github.io/taskList/)
