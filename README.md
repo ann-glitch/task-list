@@ -9,4 +9,4 @@
 
 ---
 
-[Live Demo](https://ann-glitch.github.io/taskList/)
+[Live Demo](https://ann-glitch.github.io/task-list/)
